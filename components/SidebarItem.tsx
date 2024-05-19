@@ -1,0 +1,32 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+type props = {
+  label: string;
+  iconSrc: string;
+  href: string;
+};
+const SidebarItem = ({ label, iconSrc, href }: props) => {
+    console.log(iconSrc);
+    
+  const pathname = usePathname();
+  const isActive = pathname === href;
+  return (
+    <Button
+      variant={isActive ? "sidebarOutline" : "sidebar"}
+      className="justify-start items-center h-[52px]"
+    asChild
+    >
+        <Link href={href}>
+        <Image src={iconSrc} alt={label} className="mr-4" height={32} width={32} />
+        {label}
+        </Link>
+    </Button>
+  );
+};
+
+export default SidebarItem;
