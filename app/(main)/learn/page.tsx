@@ -3,8 +3,16 @@ import StickyWrapper from "@/components/StickyWrapper";
 import React from "react";
 import { Header } from "./Header";
 import { UserProgress } from "@/components/UserProgress";
+import { getUserProgress } from "@/database/queries";
+import { redirect } from "next/navigation";
 
-const LearnPage = () => {
+const LearnPage = async () => {
+  const userProgressData = getUserProgress();
+
+  const [userProgress] = await Promise.all([userProgressData]);
+
+  if (!userProgress || !userProgress.activeCourse) redirect("/courses");
+
   return (
     // ! remove flex-row-reverse and arrange it in right sequence
     <div className="flex flex-row-reverse gap-[48px] px-6">

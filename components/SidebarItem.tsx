@@ -11,20 +11,24 @@ type props = {
   href: string;
 };
 const SidebarItem = ({ label, iconSrc, href }: props) => {
-    console.log(iconSrc);
-    
   const pathname = usePathname();
   const isActive = pathname === href;
   return (
     <Button
       variant={isActive ? "sidebarOutline" : "sidebar"}
       className="justify-start items-center h-[52px]"
-    asChild
+      asChild
     >
-        <Link href={href}>
-        <Image src={iconSrc} alt={label} className="mr-4" height={32} width={32} />
+      <Link href={href}>
+        <Image
+          src={iconSrc}
+          alt={label}
+          className="mr-4"
+          height={32}
+          width={32}
+        />
         {label}
-        </Link>
+      </Link>
     </Button>
   );
 };
